@@ -1,15 +1,15 @@
 {
 	"sent": {
-		"chat": 90,
+		"chat": 122,
 		"image": 2,
-		"sticker": 10
+		"sticker": 26
 	},
 	"receive": {
 		"e2e_notification": 3,
 		"gp2": 8,
 		"sticker": 1,
-		"chat": 63,
-		"image": 8,
+		"chat": 137,
+		"image": 10,
 		"video": 4
 	}
 }

@@ -1,2 +1,2 @@
-exports.menuId = require('./id')
+exports.menuEs = require('./es')
 exports.menuEn = require('./en')
