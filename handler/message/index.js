@@ -117,7 +117,7 @@ module.exports = msgHandler = async (client, message) => {
             break
         }
         //Commented until module is working --> https://travis-ci.org/github/hua1995116/google-translate-open-api/builds/744098517
-        /*case 'translate':
+        /* case 'translate':
             if (args.length != 1) return client.reply(from, 'Escribe bien el comando', id)
             if (!quotedMsg) return client.reply(from, 'Escribe bien el comando', id)
             const quoteText = quotedMsg.type == 'chat' ? quotedMsg.body : quotedMsg.type == 'image' ? quotedMsg.caption : ''
