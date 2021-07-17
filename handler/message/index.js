@@ -131,6 +131,26 @@ module.exports = msgHandler = async (client, message) => {
             }
             break
         }
+        //ON DEVELOPMENT --> issue oppened
+        /*case 'gifsticker': {
+            if (args.length !== 1) return client.reply(from, 'Escribe bien el comando', id)
+            if (is.MediaGiphy(url)) {
+                const gifUrl = url.match(new RegExp(/(giphy|source).(gif|mp4)/, 'gi'))
+                if (!gifUrl) { 
+                    return client.reply(from, 'El gif tiene que ser de Giphy', id)
+                }
+                const giphyCode = url.split('/')[4]
+                const smallGifUrl = url.replace(gifUrl[0], 'giphy-downsized.gif')
+                client.sendGiphyAsSticker(from, giphyCode).then(() => {
+                    client.reply(from, 'Pa\' ti', id)
+                    console.log(`Sticker Processed in ${processTime(t, moment())}s`)
+                }).catch((err) => console.log(err))
+            } else {
+                await client.reply(from, 'Solo se admite Giphy para los gifs', id)
+            }
+            break
+        }*/
+        
         //Commented until module is working --> https://travis-ci.org/github/hua1995116/google-translate-open-api/builds/744098517
         /* case 'translate':
             if (args.length != 1) return client.reply(from, 'Escribe bien el comando', id)
