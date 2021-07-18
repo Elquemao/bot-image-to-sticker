@@ -1,19 +1,19 @@
 {
 	"sent": {
-		"chat": 448,
+		"chat": 462,
 		"image": 2,
-		"sticker": 57,
-		"audio": 15,
-		"video": 3,
-		"location": 9
+		"sticker": 61,
+		"audio": 16,
+		"video": 6,
+		"location": 11
 	},
 	"receive": {
 		"e2e_notification": 5,
 		"gp2": 10,
-		"sticker": 27,
-		"chat": 1146,
-		"image": 48,
-		"video": 7,
+		"sticker": 28,
+		"chat": 1227,
+		"image": 51,
+		"video": 8,
 		"ptt": 7,
 		"audio": 2
 	}

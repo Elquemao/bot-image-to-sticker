@@ -49,7 +49,7 @@ Y a los que dicen que estás blanco ni puto caso, son un atajo de maricones more
 }
 
 exports.insults = (random) => {
-    let insultos = ['Pitillo chupa pija', 
+    const insultos = ['Pitillo chupa pija', 
     'Pitilloooooooooooo maricoooooooon', 
     'Pitillo es un subnormal', 
     'Pitillo, eres un puto pringado', 

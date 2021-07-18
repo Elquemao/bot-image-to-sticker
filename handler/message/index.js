@@ -49,8 +49,11 @@ module.exports = msgHandler = async (client, message) => {
         */
         if (bodyWithoutFilter.includes('piti') || bodyWithoutFilter.includes('pitillo') || bodyWithoutFilter.includes('antonio')) { 
             let random = Math.floor(Math.random() * 6)
-            console.log(color('[EXEC]'), color(moment(t * 1000).format('DD/MM/YYYY HH:mm:ss'), 'yellow'), color('Message send it', color), 'from', color(pushname))
+            console.log(color('[EXEC]'), color(moment(t * 1000).format('DD/MM/YYYY HH:mm:ss'), 'yellow'), color('Message send it'), 'from', color(pushname))
             return client.reply(from, menuEs.insults(random), id)
+        }
+        if (bodyWithoutFilter.includes('juli') || bodyWithoutFilter.includes('julian')) { 
+            return client.reply(from, 'Juli, por favor, cállate la boca PUTO PESADO', id)
         }
         if (bodyWithoutFilter.includes('alfon') || bodyWithoutFilter.includes('alfonso')) { 
             console.log(color('[EXEC]'), color(moment(t * 1000).format('DD/MM/YYYY HH:mm:ss'), 'yellow'), color('Message send it'), 'from', color(pushname))
@@ -160,6 +163,20 @@ module.exports = msgHandler = async (client, message) => {
                 .then((result) => client.sendText(from, result))
                 .catch(() => client.sendText(from, 'Código de idioma incorrecto o fallo de conexión con el servidor'))
             break*/
+        case 'jaguar':
+            client.sendMp4AsSticker(from, 'handler\\message\\video\\jaguar.mp4')
+            .then(() => {
+                console.log(`Video Processed in ${processTime(t, moment())} s`)
+            })
+            .catch((err) => console.log(err))
+            break
+        case 'kebab':
+            client.sendMp4AsSticker(from, 'handler\\message\\video\\kebab.mp4')
+            .then(() => {
+                console.log(`Video Processed in ${processTime(t, moment())} s`)
+            })
+            .catch((err) => console.log(err))
+            break
         case 'botstat': {
             const loadedMsg = await client.getAmountOfLoadedMessages()
             const chatIds = await client.getAllChatIds()
