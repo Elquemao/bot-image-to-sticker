@@ -49,8 +49,11 @@ module.exports = msgHandler = async (client, message) => {
         */
         if (bodyWithoutFilter.includes('piti') || bodyWithoutFilter.includes('pitillo') || bodyWithoutFilter.includes('antonio')) { 
             let random = Math.floor(Math.random() * 6)
-            console.log(color('[EXEC]'), color(moment(t * 1000).format('DD/MM/YYYY HH:mm:ss'), 'yellow'), color('Message send it', color), 'from', color(pushname))
+            console.log(color('[EXEC]'), color(moment(t * 1000).format('DD/MM/YYYY HH:mm:ss'), 'yellow'), color('Message send it'), 'from', color(pushname))
             return client.reply(from, menuEs.insults(random), id)
+        }
+        if (bodyWithoutFilter.includes('juli') || bodyWithoutFilter.includes('julian')) { 
+            return client.reply(from, 'Juli, por favor, cállate la boca PUTO PESADO', id)
         }
         if (bodyWithoutFilter.includes('alfon') || bodyWithoutFilter.includes('alfonso')) { 
             console.log(color('[EXEC]'), color(moment(t * 1000).format('DD/MM/YYYY HH:mm:ss'), 'yellow'), color('Message send it'), 'from', color(pushname))
@@ -128,6 +131,27 @@ module.exports = msgHandler = async (client, message) => {
                 }).catch((err) => console.log(err))
             } else {
                 await client.reply(from, 'Solo se admite Giphy para los gifs', id)
+            }
+            break
+        }
+        case 'gifsticker': {
+            if ((isMedia || isQuotedImage) && args.length === 0) {
+                const encryptMedia = isQuotedImage ? quotedMsg : message
+                const _mimetype = isQuotedImage ? quotedMsg.mimetype : mimetype
+                const mediaData = await decryptMedia(encryptMedia, uaOverride)
+                const videoBase64 = `data:${_mimetype};base64,${mediaData.toString('base64')}`
+                client.sendMp4AsSticker(from, videoBase64)
+                    .then(() => {
+                        console.log(`Video Processed in ${processTime(t, moment())} s`)
+                    })
+                    .catch((err) => console.log(err))
+            } else if (args.length === 1) {
+                if (!is.Url(url)) { await client.reply(from, 'Envía un enlace válido anda', id) }
+                client.sendStickerfromUrl(from, url).then((r) => (!r && r !== undefined)
+                    ? client.sendText(from, 'El enlace no tiene ninguna imagen')
+                    : client.reply(from, 'Pa\' ti hijo de la gran puta', id)).then(() => console.log(`Sticker Processed in ${processTime(t, moment())}s`))
+            } else {
+                await client.reply(from, 'Escribe bien el comando', id)
             }
             break
         }
