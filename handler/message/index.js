@@ -134,26 +134,27 @@ module.exports = msgHandler = async (client, message) => {
             }
             break
         }
-        //ON DEVELOPMENT --> issue oppened
-        /*case 'gifsticker': {
-            if (args.length !== 1) return client.reply(from, 'Escribe bien el comando', id)
-            if (is.MediaGiphy(url)) {
-                const gifUrl = url.match(new RegExp(/(giphy|source).(gif|mp4)/, 'gi'))
-                if (!gifUrl) { 
-                    return client.reply(from, 'El gif tiene que ser de Giphy', id)
-                }
-                const giphyCode = url.split('/')[4]
-                const smallGifUrl = url.replace(gifUrl[0], 'giphy-downsized.gif')
-                client.sendGiphyAsSticker(from, giphyCode).then(() => {
-                    client.reply(from, 'Pa\' ti', id)
-                    console.log(`Sticker Processed in ${processTime(t, moment())}s`)
-                }).catch((err) => console.log(err))
+        case 'gifsticker': {
+            if ((isMedia || isQuotedImage) && args.length === 0) {
+                const encryptMedia = isQuotedImage ? quotedMsg : message
+                const _mimetype = isQuotedImage ? quotedMsg.mimetype : mimetype
+                const mediaData = await decryptMedia(encryptMedia, uaOverride)
+                const videoBase64 = `data:${_mimetype};base64,${mediaData.toString('base64')}`
+                client.sendMp4AsSticker(from, videoBase64)
+                    .then(() => {
+                        console.log(`Video Processed in ${processTime(t, moment())} s`)
+                    })
+                    .catch((err) => console.log(err))
+            } else if (args.length === 1) {
+                if (!is.Url(url)) { await client.reply(from, 'Envía un enlace válido anda', id) }
+                client.sendStickerfromUrl(from, url).then((r) => (!r && r !== undefined)
+                    ? client.sendText(from, 'El enlace no tiene ninguna imagen')
+                    : client.reply(from, 'Pa\' ti hijo de la gran puta', id)).then(() => console.log(`Sticker Processed in ${processTime(t, moment())}s`))
             } else {
-                await client.reply(from, 'Solo se admite Giphy para los gifs', id)
+                await client.reply(from, 'Escribe bien el comando', id)
             }
             break
-        }*/
-        
+        }
         //Commented until module is working --> https://travis-ci.org/github/hua1995116/google-translate-open-api/builds/744098517
         /* case 'translate':
             if (args.length != 1) return client.reply(from, 'Escribe bien el comando', id)
@@ -163,20 +164,6 @@ module.exports = msgHandler = async (client, message) => {
                 .then((result) => client.sendText(from, result))
                 .catch(() => client.sendText(from, 'Código de idioma incorrecto o fallo de conexión con el servidor'))
             break*/
-        case 'jaguar':
-            client.sendMp4AsSticker(from, 'handler\\message\\video\\jaguar.mp4')
-            .then(() => {
-                console.log(`Video Processed in ${processTime(t, moment())} s`)
-            })
-            .catch((err) => console.log(err))
-            break
-        case 'kebab':
-            client.sendMp4AsSticker(from, 'handler\\message\\video\\kebab.mp4')
-            .then(() => {
-                console.log(`Video Processed in ${processTime(t, moment())} s`)
-            })
-            .catch((err) => console.log(err))
-            break
         case 'botstat': {
             const loadedMsg = await client.getAmountOfLoadedMessages()
             const chatIds = await client.getAllChatIds()
