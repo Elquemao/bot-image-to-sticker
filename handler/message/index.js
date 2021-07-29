@@ -19,9 +19,6 @@ module.exports = msgHandler = async (client, message) => {
         const botNumber = await client.getHostNumber() + '@c.us'
         const groupId = isGroupMsg ? chat.groupMetadata.id : ''
         const groupAdmins = isGroupMsg ? await client.getGroupAdmins(groupId) : ''
-        const groupMembers = isGroupMsg ? await client.getGroupMembersId(groupId) : ''
-        const isGroupAdmins = groupAdmins.includes(sender.id) || false
-        const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
         const bodyWithoutFilter = (type === 'chat') ? body.toLowerCase() : ''
 
         // Bot Prefix
@@ -111,30 +108,6 @@ module.exports = msgHandler = async (client, message) => {
             break
         }
         case 'gifsticker': {
-            if (args.length !== 1) return client.reply(from, 'Escribe bien el comando', id)
-            if (is.Giphy(url)) {
-                const getGiphyCode = url.match(new RegExp(/(\/|\-)(?:.(?!(\/|\-)))+$/, 'gi'))
-                if (!getGiphyCode) { return client.reply(from, 'El gif tiene que ser de Giphy', id) }
-                const giphyCode = getGiphyCode[0].replace(/[-\/]/gi, '')
-                const smallGifUrl = 'https://media.giphy.com/media/' + giphyCode + '/giphy-downsized.gif'
-                client.sendGiphyAsSticker(from, smallGifUrl).then(() => {
-                    client.reply(from, 'Pa\' ti')
-                    console.log(`Sticker Processed in ${processTime(t, moment())} s`)
-                }).catch((err) => console.log(err))
-            } else if (is.MediaGiphy(url)) {
-                const gifUrl = url.match(new RegExp(/(giphy|source).(gif|mp4)/, 'gi'))
-                if (!gifUrl) { return client.reply(from, 'El gif tiene que ser de Giphy', id) }
-                const smallGifUrl = url.replace(gifUrl[0], 'giphy-downsized.gif')
-                client.sendGiphyAsSticker(from, smallGifUrl).then(() => {
-                    client.reply(from, 'Pa\' ti', id)
-                    console.log(`Sticker Processed in ${processTime(t, moment())}s`)
-                }).catch((err) => console.log(err))
-            } else {
-                await client.reply(from, 'Solo se admite Giphy para los gifs', id)
-            }
-            break
-        }
-        case 'gifsticker': {
             if ((isMedia || isQuotedImage) && args.length === 0) {
                 const encryptMedia = isQuotedImage ? quotedMsg : message
                 const _mimetype = isQuotedImage ? quotedMsg.mimetype : mimetype
@@ -145,11 +118,6 @@ module.exports = msgHandler = async (client, message) => {
                         console.log(`Video Processed in ${processTime(t, moment())} s`)
                     })
                     .catch((err) => console.log(err))
-            } else if (args.length === 1) {
-                if (!is.Url(url)) { await client.reply(from, 'Envía un enlace válido anda', id) }
-                client.sendStickerfromUrl(from, url).then((r) => (!r && r !== undefined)
-                    ? client.sendText(from, 'El enlace no tiene ninguna imagen')
-                    : client.reply(from, 'Pa\' ti hijo de la gran puta', id)).then(() => console.log(`Sticker Processed in ${processTime(t, moment())}s`))
             } else {
                 await client.reply(from, 'Escribe bien el comando', id)
             }
@@ -176,7 +144,7 @@ module.exports = msgHandler = async (client, message) => {
                 return client.reply(from, 'Escribe bien el comando', id)
             }
 
-            let audioPath = 'handler\\message\\audio\\' + args[0].toLowerCase() + '.ogg'
+            let audioPath = 'handler/message/audio/' + args[0].toLowerCase() + '.ogg'
 
             fs.access(audioPath, fs.F_OK, (err) => {
                 if(err) {
