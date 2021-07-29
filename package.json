@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js"
   },
-  "author": "Yoga Sakti",
+  "author": "Alejandro Ramon",
   "repository": {
     "type": "git",
     "url": "https://github.com/Elquemao/bot-image-to-sticker.git"
@@ -17,11 +17,11 @@
   "homepage": "https://github.com/Elquemao/bot-image-to-sticker",
   "license": "ISC",
   "dependencies": {
-    "@open-wa/wa-automate": "^4.8.2",
+    "@open-wa/wa-automate": "^4.12.3",
     "chalk": "^4.1.1",
     "cross-env": "^7.0.3",
-    "dotenv": "^8.6.0",
-    "file-type": "^16.5.1",
+    "dotenv": "^10.0.0",
+    "file-type": "^16.5.2",
     "form-data": "^4.0.0",
     "google-translate-open-api": "^1.3.7",
     "moment-timezone": "^0.5.33",
@@ -29,15 +29,15 @@
     "remove.bg": "^1.3.0",
     "require-from-web": "^1.2.0",
     "sharp": "^0.28.3",
-    "tiktok-scraper": "^1.4.0",
+    "tiktok-scraper": "^1.4.33",
     "update-json-file": "^1.1.1"
   },
   "devDependencies": {
-    "eslint": "^7.12.1",
-    "eslint-config-standard": "^16.0.1",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint": "^7.31.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.2"
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-standard": "^4.1.0"
   }
 }
