@@ -1,6 +1,10 @@
 const { create, Client } = require('@open-wa/wa-automate')
 const { color, messageLog } = require('./utils')
+const moment = require('moment-timezone')
+moment.tz.setDefault('Europe/Madrid').locale('id')
 const msgHandler = require('./handler/message')
+const fs = require("fs")
+const CronJob = require('cron').CronJob
 
 const start = (client = new Client()) => {
     console.log('[DEV]', color('Alejandro Ramon', 'yellow'))
@@ -8,6 +12,38 @@ const start = (client = new Client()) => {
 
     // Message log for analytic
     client.onAnyMessage((fn) => messageLog(fn.fromMe, fn.type))
+
+    //Birthdays job scheduled every day at 09:00AM
+    let birthdayHelper = new CronJob('00 09 * * * *', function() {
+        fs.readFile("utils\\birthdays.json", function(err, data) {
+            if(err) {
+                throw err
+            }
+            
+            const parsedJSON = JSON.parse(data)
+            const date = new Date().toLocaleDateString().substring(0, 4)
+            let birthMan = ""
+
+            for (let i = 0; i < parsedJSON.birthdays.length; i++) {
+                if(parsedJSON.birthdays[i].birthday == date) {
+                    birthMan = parsedJSON.birthdays[i].name
+                }
+            }
+
+            if(birthMan != "") {
+                for (let i = 0; i < parsedJSON.birthdays.length; i++) {
+                    if(parsedJSON.birthdays[i].birthday != date) {
+                        client.sendText(parsedJSON.birthdays[i].id, "Hola " + parsedJSON.birthdays[i].name + "!! Hoy es el cumple de " + birthMan + " no te olvides de felicitarle jejeje") 
+                    }
+                }
+                console.log('[EXEC]', color(moment(new Date()).format('DD/MM/YYYY HH:mm:ss'), 'yellow'), 'Birthday notified to all members')
+            }
+            
+        })
+    })
+
+    birthdayHelper.start()
+    console.log('[CLIENT] Birthdays job started!')
 
     // Force it to keep the current session
     client.onStateChanged((state) => {
@@ -53,6 +89,7 @@ const options = {
     headless: true,
     qrTimeout: 0,
     authTimeout: 0,
+    inDocker: false, //Must be true on Heroku deployments (Docker)
     restartOnCrash: start,
     cacheEnabled: false,
     useChrome: true,
