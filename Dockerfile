@@ -24,4 +24,4 @@ ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils 
 
 EXPOSE 8080
 
-CMD ["npm", "start"]
+CMD ["npm", "start --hostname 0.0.0.0"]
