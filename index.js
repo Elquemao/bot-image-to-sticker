@@ -89,7 +89,7 @@ const options = {
     headless: true,
     qrTimeout: 0,
     authTimeout: 0,
-    inDocker: false, //Must be true on Heroku deployments (Docker)
+    inDocker: true, //Must be true on Heroku deployments (Docker)
     restartOnCrash: start,
     cacheEnabled: false,
     useChrome: true,
