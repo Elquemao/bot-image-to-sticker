@@ -23,5 +23,6 @@ ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils 
 && apt autoremove --yes
 
 EXPOSE 8080
+PORT 8080
 
 CMD ["npm", "start"]
