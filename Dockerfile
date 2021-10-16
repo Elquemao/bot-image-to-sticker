@@ -18,7 +18,6 @@ ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils 
 COPY . .
 
 RUN npm install
-RUN npm install --only=dev --ignore-scripts
 
 EXPOSE 8080
 
