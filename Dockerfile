@@ -24,4 +24,4 @@ ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils 
 
 EXPOSE 8080
 
-CMD ["node", "./node_modules/@open-wa/wa-automate/bin/server.js"]
+CMD ["npm", "start"]
