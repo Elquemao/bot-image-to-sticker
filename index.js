@@ -45,6 +45,9 @@ const start = (client = new Client()) => {
     birthdayHelper.start()
     console.log('[CLIENT] Birthdays job started!')
 
+    //Welcome Message
+    client.sendText('34654972101-1520871084@g.us', 'Bot has been deployed, now is active - ' + moment(new Date()).format('DD/MM/YYYY HH:mm:ss'))
+
     // Force it to keep the current session
     client.onStateChanged((state) => {
         console.log('[Client State]', state)
@@ -89,7 +92,8 @@ const options = {
     headless: true,
     qrTimeout: 0,
     authTimeout: 0,
-    inDocker: true, //Must be true on Heroku deployments (Docker)
+    inDocker: true, 
+    //multiDevice: true, //for developing
     restartOnCrash: start,
     cacheEnabled: false,
     useChrome: true,

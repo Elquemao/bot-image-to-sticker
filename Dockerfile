@@ -2,13 +2,6 @@ FROM node:lts
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
-
-RUN npm install
-RUN npm install --only=dev --ignore-scripts
-
-COPY . .
-
 RUN set -x \
 && apt-get update \
 && apt-get install gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 \
@@ -22,6 +15,11 @@ ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils 
 && rm google-chrome-stable_current_amd64.deb \
 && apt autoremove --yes
 
+COPY . .
+
+RUN npm install
+RUN npm install --only=dev --ignore-scripts
+
 EXPOSE 8080
 
-CMD ["npm", "start -- --hostname 0.0.0.0"]
+CMD ["npm", "start"]
