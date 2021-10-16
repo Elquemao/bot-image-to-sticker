@@ -1,6 +1,6 @@
 <div align="center">
 
-# Whatsapp Bot - sticker creator
+# Whatsapp Bot
 
 </div>
 
@@ -27,8 +27,8 @@ This project require NodeJS 6.14.13.
 Clone this project
 
 ```bash
-> git clone https://github.com/Elquemao/bot-sticker-to-image.git
-> cd imageToSticker
+> git clone https://github.com/Elquemao/whatsapp-bot.git
+> cd whatsapp-bot
 ```
 
 Install the dependencies:

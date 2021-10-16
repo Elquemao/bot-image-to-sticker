@@ -1,7 +1,7 @@
 {
-  "name": "bot-sticker-creator",
-  "version": "10.0.0",
-  "description": "Whatsapp Bot - sticker creator",
+  "name": "whatsapp-bot",
+  "version": "2.0.0",
+  "description": "Whatsapp Bot",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -9,15 +9,15 @@
   "author": "Alejandro Ramon",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Elquemao/bot-image-to-sticker.git"
+    "url": "https://github.com/Elquemao/whatsapp-bot.git"
   },
   "bugs": {
-    "url": "https://github.com/Elquemao/bot-image-to-sticker/issues"
+    "url": "https://github.com/Elquemao/whatsapp-bot/issues"
   },
-  "homepage": "https://github.com/Elquemao/bot-image-to-sticker",
+  "homepage": "https://github.com/Elquemao/whatsapp-bot",
   "license": "ISC",
   "dependencies": {
-    "@open-wa/wa-automate": "^4.23.0",
+    "@open-wa/wa-automate": "^4.23.2",
     "chalk": "^4.1.2",
     "cron": "^1.8.2",
     "cross-env": "^7.0.3",
@@ -32,13 +32,5 @@
     "sharp": "^0.29.1",
     "tiktok-scraper": "^1.4.36",
     "update-json-file": "^1.1.1"
-  },
-  "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-standard": "^4.1.0"
   }
 }
