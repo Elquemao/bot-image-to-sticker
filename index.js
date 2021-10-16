@@ -46,7 +46,7 @@ const start = (client = new Client()) => {
     console.log('[CLIENT] Birthdays job started!')
 
     //Welcome Message
-    client.sendText('34654972101-1520871084@g.us', 'Bot has been deployed, now is active - ' + moment(new Date()).format('DD/MM/YYYY HH:mm:ss'))
+    //client.sendText('34654972101-1520871084@g.us', 'Bot has been deployed, now is active - ' + moment(new Date()).format('DD/MM/YYYY HH:mm:ss'))
 
     // Force it to keep the current session
     client.onStateChanged((state) => {
