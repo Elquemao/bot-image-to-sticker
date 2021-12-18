@@ -14,8 +14,8 @@ const start = (client = new Client()) => {
     client.onAnyMessage((fn) => messageLog(fn.fromMe, fn.type))
 
     //Birthdays job scheduled every day at 09:00AM
-    let birthdayHelper = new CronJob('00 09 * * * *', function() {
-        fs.readFile("utils\\birthdays.json", function(err, data) {
+    let birthdayHelper = new CronJob('00 00 09 * * *', function() {
+        fs.readFile("utils/birthdays.json", function(err, data) {
             if(err) {
                 throw err
             }
@@ -37,6 +37,8 @@ const start = (client = new Client()) => {
                     }
                 }
                 console.log('[EXEC]', color(moment(new Date()).format('DD/MM/YYYY HH:mm:ss'), 'yellow'), 'Birthday notified to all members')
+            } else {
+                console.log('[EXEC]', color(moment(new Date()).format('DD/MM/YYYY HH:mm:ss'), 'yellow'), 'Birthdays checked')
             }
             
         })
