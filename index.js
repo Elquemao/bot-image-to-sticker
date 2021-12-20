@@ -21,11 +21,11 @@ const start = (client = new Client()) => {
             }
             
             const parsedJSON = JSON.parse(data)
-            const date = new Date().toLocaleDateString().substring(0, 4)
+            const date = new Date().toLocaleDateString().substring(0, 5).split('/')
             let birthMan = ""
 
             for (let i = 0; i < parsedJSON.birthdays.length; i++) {
-                if(parsedJSON.birthdays[i].birthday == date) {
+                if(parsedJSON.birthdays[i].birthday == (date[1] + "/" + date[0])) {
                     birthMan = parsedJSON.birthdays[i].name
                 }
             }
