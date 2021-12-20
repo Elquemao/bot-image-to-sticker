@@ -14,7 +14,7 @@ const start = (client = new Client()) => {
     client.onAnyMessage((fn) => messageLog(fn.fromMe, fn.type))
 
     //Birthdays job scheduled every day at 09:00AM
-    let birthdayHelper = new CronJob('00 00 09 * * *', function() {
+    let birthdayHelper = new CronJob('00 00 11 * * *', function() {
         fs.readFile("utils/birthdays.json", function(err, data) {
             if(err) {
                 throw err
